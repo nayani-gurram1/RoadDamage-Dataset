@@ -19,7 +19,7 @@ st.set_page_config(
 # -----------------------------------
 @st.cache_resource
 def load_model():
-    return tf.keras.models.load_model("road_damage_model.h5")
+    return tf.keras.models.load_model("road_damage_model.keras")
 
 model = load_model()
 
@@ -119,7 +119,7 @@ if uploaded_file is not None:
     img_array = np.expand_dims(img_array, axis=0)
 
     # Prediction
-    prediction = model.predict(img_array)
+    prediction = model.predict(img_array, verbose=0)
 
     predicted_index = np.argmax(prediction)
     confidence = np.max(prediction)*100
